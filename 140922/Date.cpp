@@ -58,143 +58,143 @@ void date::inputDate()
 	cout << "Enter year: ";
 	cin >> year;
 }
-date date::operator++()
+date operator++(date& dt)
 {
-	day++;
+	dt.setDay(dt.getDay() + 1);
 	return date();
 }
-date date::operator++(int)
+date operator++(date& dt, int)
 {
-	date temp = *this;
-	day++;
+	date temp = dt;
+	dt.setDay(dt.getDay() + 1);
 	return temp;
 }
-date date::operator--()
+date operator--(date& dt)
 {
-	day--;
+	dt.setDay(dt.getDay() - 1);
 	return date();
 }
-date date::operator--(int)
+date operator--(date& dt, int)
 {
-	date temp = *this;
-	day--;
+	date temp = dt;
+	dt.setDay(dt.getDay() - 1);
 	return temp;
 }
-int date::operator+(int x)
+int operator+(int x, date dt)
 {
-	return day + x;
+	return dt.getDay() + x;
 }
-int date::operator-(int x)
+int operator-(int x, date dt)
 {
-	return day - x;
+	return dt.getDay() - x;
 }
-date date::operator+(date dt)
+date operator+(date dt, date dt2)
 {
-	date temp = *this;
-	temp.day += dt.day;
-	temp.month += dt.month;
-	temp.year += dt.year;
+	date temp = dt;
+	temp.setDay(dt.getDay() + dt2.getDay());
+	temp.setMonth(dt.getMonth() + dt2.getMonth());
+	temp.setYear(dt.getYear() + dt2.getYear());
 	return temp;
 }
-date date::operator-(date dt)
+date operator-(date dt, date dt2)
 {
-	date temp = *this;
-	temp.day -= dt.day;
-	temp.month -= dt.month;
-	temp.year -= dt.year;
+	date temp = dt;
+	temp.setDay(dt.getDay() - dt2.getDay());
+	temp.setMonth(dt.getMonth() - dt2.getMonth());
+	temp.setYear(dt.getYear() - dt2.getYear());
 	return temp;
 }
-void date::operator+=(int x)
+void operator+=(date& dt, int x)
 {
-	day += x;
+	dt.setDay(dt.getDay() + x);
 }
-void date::operator-=(int x)
+void operator-=(date& dt, int x)
 {
-	day -= x;
+	dt.setDay(dt.getDay() - x);
 }
-bool date::operator<(date dt)
+bool operator<(date d, date dt)
 {
-	if (year != dt.year)
+	if (d.getYear() != dt.getYear())
 	{
-		return (year < dt.year) ? true : false;
+		return (d.getYear() < dt.getYear()) ? true : false;
 	}
 	else
 	{
-		if (month != dt.month)
+		if (d.getMonth() != dt.getMonth())
 		{
-			return (month < dt.month) ? true : false;
+			return (d.getMonth() < dt.getMonth()) ? true : false;
 		}
 		else
 		{
-			return (day < dt.day) ? true : false;
+			return (d.getDay() < dt.getDay()) ? true : false;
 		}
 	}
 }
-bool date::operator>(date dt)
+bool operator>(date d, date dt)
 {
-	if (year != dt.year)
+	if (d.getYear() != dt.getYear())
 	{
-		return (year > dt.year) ? true : false;
+		return (d.getYear() > dt.getYear()) ? true : false;
 	}
 	else
 	{
-		if (month != dt.month)
+		if (d.getMonth() != dt.getMonth())
 		{
-			return (month > dt.month) ? true : false;
+			return (d.getMonth() > dt.getMonth()) ? true : false;
 		}
 		else
 		{
-			return (day > dt.day) ? true : false;
+			return (d.getDay() > dt.getDay()) ? true : false;
 		}
 	}
 }
-bool date::operator>=(date dt)
+bool operator>=(date d, date dt)
 {
-	if (year == dt.year && month == dt.month && day == dt.day);
+	if (d.getYear() == dt.getYear() && d.getMonth() == dt.getMonth() && d.getDay() == dt.getDay())
 	{
 		return true;
 	}
-	if (year != dt.year)
+	if (d.getYear() != dt.getYear())
 	{
-		return (year > dt.year) ? true : false;
+		return (d.getYear() > dt.getYear()) ? true : false;
 	}
 	else
 	{
-		if (month != dt.month)
+		if (d.getMonth() != dt.getMonth())
 		{
-			return (month > dt.month) ? true : false;
+			return (d.getMonth() > dt.getMonth()) ? true : false;
 		}
 		else
 		{
-			return (day > dt.day) ? true : false;
+			return (d.getDay() > dt.getDay()) ? true : false;
 		}
 	}
 }
-bool date::operator<=(date dt)
+bool operator<=(date d, date dt)
 {
-	if (year == dt.year && month == dt.month && day == dt.day);
+	if (d.getYear() == dt.getYear() && d.getMonth() == dt.getMonth() && d.getDay() == dt.getDay())
 	{
 		return true;
 	}
-	if (year != dt.year)
+	if (d.getYear() != dt.getYear())
 	{
-		return (year < dt.year) ? true : false;
+		return (d.getYear() < dt.getYear()) ? true : false;
 	}
 	else
 	{
-		if (month != dt.month)
+		if (d.getMonth() != dt.getMonth())
 		{
-			return (month < dt.month) ? true : false;
+			return (d.getMonth() < dt.getMonth()) ? true : false;
 		}
 		else
 		{
-			return (day < dt.day) ? true : false;
+			return (d.getDay() < dt.getDay()) ? true : false;
 		}
 	}
 }
-bool date::operator==(date dt)
+bool operator==(date d, date dt)
 {
-	if (year == dt.year && month == dt.month && day == dt.day)
+	if (d.getYear() == dt.getYear() && d.getMonth() == dt.getMonth() && d.getDay() == dt.getDay())
 	{
 		return true;
 	}
@@ -203,9 +203,9 @@ bool date::operator==(date dt)
 		return false;
 	}
 }
-bool date::operator!=(date dt)
+bool operator!=(date d, date dt)
 {
-	if (year == dt.year && month == dt.month && day == dt.day)
+	if (d.getYear() == dt.getYear() && d.getMonth() == dt.getMonth() && d.getDay() == dt.getDay())
 	{
 		return false;
 	}

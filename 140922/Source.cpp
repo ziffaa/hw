@@ -3,13 +3,12 @@
 
 using namespace std;
 
-
 int main()
 {
 	date x(12, 34, 64);
 	date y(12, 34, 8);
 	date z(12, 34, 8);
-	
+
 	cout << (x > y) << endl;
 	cout << (x < y) << endl;
 	cout << (z == y) << endl;
@@ -24,4 +23,8 @@ int main()
 	z.printDate();
 	cout << endl;
 	y.printDate();
+	cout << endl;
+	y++;
+	y.printDate();
+	cout << endl;
 }
